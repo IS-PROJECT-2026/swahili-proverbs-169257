@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Swahili Proverbs — Wisdom in Language</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =====================================================
+       TOP BAR
+       ===================================================== -->
+
+  <header class="top-bar">
+
+    <a href="#" class="brand" data-view="home">
+      <span class="brand-main">KISWAHILI</span>
+      <span class="brand-sub">PROVERBS</span>
+    </a>
+
+    <div class="top-label">
+      WISDOM / LANGUAGE / CULTURE
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       NAVIGATION
+       ===================================================== -->
+
+  <nav class="site-nav">
+
+    <button
+      class="nav-btn active"
+      data-view="home">
+      <span>01</span>
+      Home
+    </button>
+
+    <button
+      class="nav-btn"
+      data-view="quiz">
+      <span>02</span>
+      Quiz
+    </button>
+
+    <button
+      class="nav-btn"
+      data-view="browse">
+      <span>03</span>
+      Browse
+    </button>
+
+    <button
+      class="nav-btn"
+      data-view="stats">
+      <span>04</span>
+      Stats
+    </button>
+
+  </nav>
+
+
+  <!-- =====================================================
+       MAIN APPLICATION
+       ===================================================== -->
+
+  <main id="app">
+
+
+    <!-- ===================================================
+         HOME
+         =================================================== -->
+
+    <section id="view-home" class="view">
+
+      <div class="home-intro">
+
+        <div class="eyebrow">
+          01 / DISCOVER
+        </div>
+
+        <h1>
+          Swahili<br>
+          <em>wisdom.</em>
+        </h1>
+
+        <p class="home-description">
+          Explore the sayings, meanings and cultural wisdom
+          passed down through generations.
+        </p>
+
+        <div class="scroll-hint">
+          SCROLL TO EXPLORE
+          <span>↓</span>
+        </div>
+
+      </div>
+
+
+      <!-- Proverb of the day -->
+
+      <div class="section-heading">
+
+        <span class="section-number">01</span>
+
+        <h2>Proverb of<br>the day</h2>
+
+      </div>
+
+
+      <div
+        id="proverb-of-the-day"
+        class="proverb-card">
+
+        <p class="loading">
+          Loading...
+        </p>
+
+      </div>
+
+
+      <div class="home-actions">
+
+        <button
+          class="outline-btn"
+          data-view="browse">
+          Explore all proverbs
+          <span>↗</span>
+        </button>
+
+        <button
+          class="solid-btn"
+          data-view="quiz">
+          Test your knowledge
+          <span>→</span>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         QUIZ
+         =================================================== -->
+
+    <section id="view-quiz" class="view hidden">
+
+      <div class="page-intro">
+
+        <div class="eyebrow">
+          02 / TEST YOUR KNOWLEDGE
+        </div>
+
+        <h2>
+          How well do<br>
+          you know your<br>
+          <em>proverbs?</em>
+        </h2>
+
+        <p>
+          Match the proverb with its meaning and see
+          how much Swahili wisdom you remember.
+        </p>
+
+      </div>
+
+
+      <div id="quiz-container" class="quiz-container">
+
+        <p class="loading">
+          Preparing your quiz...
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         BROWSE
+         =================================================== -->
+
+    <section id="view-browse" class="view hidden">
+
+      <div class="page-intro">
+
+        <div class="eyebrow">
+          03 / EXPLORE
+        </div>
+
+        <h2>
+          Explore<br>
+          <em>wisdom.</em>
+        </h2>
+
+        <p>
+          Search through the collection of Swahili proverbs
+          and discover the meanings behind them.
+        </p>
+
+      </div>
+
+
+      <div class="search-wrapper">
+
+        <span class="search-label">
+          SEARCH
+        </span>
+
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search a proverb or meaning..."
+        >
+
+        <span class="search-icon">⌕</span>
+
+      </div>
+
+
+      <div
+        id="proverb-list"
+        class="proverb-grid">
+
+        <p class="loading">
+          Loading proverbs...
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         STATS
+         =================================================== -->
+
+    <section id="view-stats" class="view hidden">
+
+      <div class="page-intro">
+
+        <div class="eyebrow">
+          04 / YOUR PROGRESS
+        </div>
+
+        <h2>
+          Your<br>
+          <em>journey.</em>
+        </h2>
+
+        <p>
+          Keep track of how much Swahili wisdom
+          you've discovered.
+        </p>
+
+      </div>
+
+
+      <div id="stats-container" class="stats-grid">
+
+        <div class="stat-card">
+
+          <span class="stat-label">
+            PROVERBS
+          </span>
+
+          <strong id="stat-proverbs">
+            —
+          </strong>
+
+          <span class="stat-description">
+            In the collection
+          </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span class="stat-label">
+            QUIZ SCORE
+          </span>
+
+          <strong id="stat-score">
+            0%
+          </strong>
+
+          <span class="stat-description">
+            Current accuracy
+          </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span class="stat-label">
+            QUIZZES
+          </span>
+
+          <strong id="stat-quizzes">
+            0
+          </strong>
+
+          <span class="stat-description">
+            Questions attempted
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer class="site-footer">
+
+    <div>
+      <span class="footer-small">
+        SWAHILI PROVERBS
+      </span>
+
+      <h2>
+        Keep the<br>
+        wisdom alive.
+      </h2>
+    </div>
+
+    <p>
+      ICS Coursework Project
+    </p>
+
+  </footer>
+
+
+  <script src="utils.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
