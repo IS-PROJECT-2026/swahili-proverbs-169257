@@ -18,19 +18,11 @@ let quizFinished = false;
 async function loadProverbs() {
   try {
     const response = await fetch("proverbs.json");
-
     if (!response.ok) {
-      throw new Error(
-        `Failed to fetch proverbs.json: ${response.status}`
-      );
+      throw new Error(`Failed to fetch proverbs.json: ${response.status}`);
     }
-
     proverbs = await response.json();
-
     renderProverbOfTheDay();
-    renderBrowse();
-    updateStats();
-
   } catch (err) {
     console.error("Error loading proverbs:", err);
 
