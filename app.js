@@ -652,6 +652,7 @@ function finishQuiz() {
       (quizScore / total) * 100
     );
 
+  recordQuizResult(quizScore, total);
 
   const container =
     document.getElementById(
