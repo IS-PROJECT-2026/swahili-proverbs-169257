@@ -23,6 +23,9 @@ async function loadProverbs() {
     }
     proverbs = await response.json();
     renderProverbOfTheDay();
+    renderBrowse();
+    setupCategoryFilters();
+    updateStats();
   } catch (err) {
     console.error("Error loading proverbs:", err);
 
@@ -143,6 +146,48 @@ function renderBrowse(list = proverbs) {
 
 
 // =========================================================
+// CATEGORY FILTERING (Issue #11)
+// =========================================================
+
+let activeCategory = "all";
+let activeQuery = "";
+
+function applyFilters() {
+  const filtered = proverbs.filter((p) => {
+    const matchesCategory = activeCategory === "all" || p.category === activeCategory;
+    const text = p.proverb.toLowerCase();
+    const meaning = p.meaning.toLowerCase();
+    const matchesQuery = !activeQuery || text.includes(activeQuery) || meaning.includes(activeQuery);
+    return matchesCategory && matchesQuery;
+  });
+  renderBrowse(filtered);
+}
+
+function setupCategoryFilters() {
+  const container = document.getElementById("category-filters");
+  if (!container) return;
+
+  const categories = [...new Set(proverbs.map((p) => p.category))].sort();
+
+  categories.forEach((category) => {
+    const btn = document.createElement("button");
+    btn.className = "filter-btn";
+    btn.dataset.category = category;
+    btn.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+    container.appendChild(btn);
+  });
+
+  container.querySelectorAll(".filter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activeCategory = btn.dataset.category;
+      container.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      applyFilters();
+    });
+  });
+}
+
+// =========================================================
 // SEARCH
 // =========================================================
 
@@ -158,39 +203,8 @@ function setupSearch() {
   searchInput.addEventListener(
     "input",
     () => {
-
-      const query =
-        searchInput.value
-          .toLowerCase()
-          .trim();
-
-      if (!query) {
-        renderBrowse(proverbs);
-        return;
-      }
-
-      const filtered =
-        proverbs.filter(
-          proverb => {
-
-            const text =
-              String(
-                proverb.proverb || ""
-              ).toLowerCase();
-
-            const meaning =
-              String(
-                proverb.meaning || ""
-              ).toLowerCase();
-
-            return (
-              text.includes(query) ||
-              meaning.includes(query)
-            );
-          }
-        );
-
-      renderBrowse(filtered);
+      activeQuery = searchInput.value.toLowerCase().trim();
+      applyFilters();
     }
   );
 }
