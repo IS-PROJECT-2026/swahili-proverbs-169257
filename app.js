@@ -65,7 +65,7 @@ function renderProverbOfTheDay() {
     return;
   }
 
-  const proverb = proverbs[0];
+  const proverb = getProverbOfTheDay();
 
   container.innerHTML = `
     <p class="proverb-text">
@@ -78,6 +78,21 @@ function renderProverbOfTheDay() {
   `;
 }
 
+// =========================================================
+// PROVERB OF THE DAY — deterministic daily selection
+// =========================================================
+
+function getProverbOfTheDay() {
+  const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+
+  let hash = 0;
+  for (let i = 0; i < today.length; i++) {
+    hash = (hash * 31 + today.charCodeAt(i)) >>> 0;
+  }
+
+  const index = hash % proverbs.length;
+  return proverbs[index];
+}
 
 // =========================================================
 // BROWSE
