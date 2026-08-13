@@ -801,62 +801,63 @@ function shuffle(array) {
 
 function updateStats() {
 
-  const proverbCount =
-    document.getElementById(
-      "stat-proverbs"
-    );
-
+  const proverbCount = document.getElementById("stat-proverbs");
   if (proverbCount) {
-
-    proverbCount.textContent =
-      proverbs.length;
-
+    proverbCount.textContent = proverbs.length;
   }
 
+  const progress = getProgress(); // from utils.js
 
-  const score =
-    document.getElementById(
-      "stat-score"
+  const scoreEl = document.getElementById("stat-score");
+  if (scoreEl) {
+    const totals = progress.history.reduce(
+      (acc, h) => {
+        acc.correct += h.score;
+        acc.total += h.total;
+        return acc;
+      },
+      { correct: 0, total: 0 }
     );
-
-  if (score) {
-
-    if (quizQuestions.length) {
-
-      const percentage =
-        Math.round(
-          (quizScore /
-            quizQuestions.length) *
-            100
-        );
-
-      score.textContent =
-        `${percentage}%`;
-
-    } else {
-
-      score.textContent =
-        "0%";
-
-    }
-
+    const accuracy = totals.total ? Math.round((totals.correct / totals.total) * 100) : 0;
+    scoreEl.textContent = `${accuracy}%`;
   }
 
-
-  const quizzes =
-    document.getElementById(
-      "stat-quizzes"
-    );
-
-  if (quizzes) {
-
-    quizzes.textContent =
-      quizQuestions.length
-        ? quizQuestions.length
-        : 0;
-
+  const quizzesEl = document.getElementById("stat-quizzes");
+  if (quizzesEl) {
+    quizzesEl.textContent = progress.quizzesTaken;
   }
 
+  const streakEl = document.getElementById("stat-streak");
+  if (streakEl) {
+    streakEl.textContent = progress.streak;
+  }
+
+  renderQuizHistory(progress.history);
+}
+
+function renderQuizHistory(history) {
+  const container = document.getElementById("quiz-history-list");
+  if (!container) return;
+
+  if (!history.length) {
+    container.innerHTML = `<p class="loading">No quizzes taken yet.</p>`;
+    return;
+  }
+
+  const recent = [...history].reverse().slice(0, 5);
+
+  container.innerHTML = recent
+    .map((entry) => {
+      const percentage = Math.round((entry.score / entry.total) * 100);
+      const goodClass = percentage >= 70 ? "good" : "";
+      return `
+        <div class="history-item">
+          <span class="history-date">${entry.date}</span>
+          <span class="history-result ${goodClass}">${entry.score}/${entry.total} (${percentage}%)</span>
+        </div>
+      `;
+    })
+    .join("");
 }
 
 
