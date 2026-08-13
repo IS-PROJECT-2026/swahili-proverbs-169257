@@ -28,3 +28,6 @@ Defines the structure used in `proverbs.json`.
   features (Milestones 2 and 4) reference proverbs by `id`, not array index.
 - New categories can be added, but existing category strings used in filter
   UI (Issue #11) must match exactly (case-sensitive, lowercase).
+
+  ## Version
+Schema version 1.1 — updated with quiz reference notes.
