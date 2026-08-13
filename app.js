@@ -1,6 +1,6 @@
 // =========================================================
 // SWAHILI PROVERBS APP
-// Navigation + Proverbs + Browse + Quiz + Stats
+// Navigation + Proverbs + Browse + Quiz + Stats + Streaks
 // =========================================================
 
 let proverbs = [];
