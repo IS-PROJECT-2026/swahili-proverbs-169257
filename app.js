@@ -1,8 +1,8 @@
 // =========================================================
 // SWAHILI PROVERBS APP
-// Navigation + Proverbs + Browse + Quiz + Stats
+// A full-featured Swahili proverb learning experience —
+// Navigation, Browse, Quiz, Stats, and Streaks
 // =========================================================
-
 let proverbs = [];
 
 let currentQuestion = 0;
